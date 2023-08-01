@@ -1,5 +1,6 @@
 package com.altoya.wareffects;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,13 +13,23 @@ public class RegionalWeapons implements CommandExecutor {
     if (sender.hasPermission("wareffects.regionalweapons.use")) return false;
     if(args.length != 1) return false;
 
-    //TODO CHECK IF ARGS is 'list'
     String weaponType = args[0].toLowerCase();
+    if(weaponType.equals("list")){
+      handleListCommand((Player) sender);
+      return true;
+    }
 
     if(weaponType.contains("nuke")) purchaseNuke((Player) sender);
     if(weaponType.contains("gas")) purchaseGas((Player) sender);
 
     return true;
+  }
+
+  private void handleListCommand(Player player){
+    player.sendMessage("" + ChatColor.BOLD + ChatColor.GREEN + "=====War-Effects=====");
+    player.sendMessage("" + ChatColor.BOLD + ChatColor.GREEN + "Nuke: $1000");
+    player.sendMessage("" + ChatColor.BOLD + ChatColor.GREEN + "Gas: $1000");
+    player.sendMessage("" + ChatColor.BOLD + ChatColor.GREEN + "=====================");
   }
 
   private boolean playerCanAfford(Player player, double price){
