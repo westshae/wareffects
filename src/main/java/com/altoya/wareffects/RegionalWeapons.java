@@ -1,9 +1,13 @@
 package com.altoya.wareffects;
 
+import java.io.File;
+
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 public class RegionalWeapons implements CommandExecutor {
@@ -43,7 +47,9 @@ public class RegionalWeapons implements CommandExecutor {
   }
 
   private boolean purchaseNuke(Player player){
-    double price = 1000.0;
+    FileConfiguration config = Bukkit.getServer().getPluginManager().getPlugin("wareffects").getConfig();
+
+    double price = config.getDouble("nukePrice");
     if(!playerCanAfford(player, price)) {
       Util.sendErrorMessage(player, "You cannot afford the price of " + price);
       return false;
@@ -61,7 +67,9 @@ public class RegionalWeapons implements CommandExecutor {
   }
 
   private boolean purchaseGas(Player player){
-    double price = 1000.0;
+    FileConfiguration config = Bukkit.getServer().getPluginManager().getPlugin("wareffects").getConfig();
+
+    double price = config.getDouble("gasPrice");
     if(!playerCanAfford(player, price)) {
       Util.sendErrorMessage(player, "You cannot afford the price of " + price);
       return false;

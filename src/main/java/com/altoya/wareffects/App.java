@@ -9,6 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import net.milkbowl.vault.economy.Economy;
 public class App extends JavaPlugin {
     public static Economy economy = null;
+    
     @Override
     public void onEnable() {
         loadConfig();//Loads .yml
@@ -16,7 +17,7 @@ public class App extends JavaPlugin {
         setupEconomy();
 
         //How to register commands
-        //this.getCommand("commandNameInYml").setExecutor(new ObjectWithOnCommandMethod()); 
+        this.getCommand("regionalweapons").setExecutor(new RegionalWeapons()); 
 
         //How to register eventListeners
         //this.getServer().getPluginManager().registerEvents(new ObjectWith@EventHandlers(), this);
@@ -47,7 +48,9 @@ public class App extends JavaPlugin {
 
         if(!configFile.exists()){
             //Add new defaults, path might be items.0.modelID
-            // getConfig().addDefault("pathInYml", "valueToSet");
+            getConfig().addDefault("nukePrice", 1000.0);
+            getConfig().addDefault("gasPrice", 1000.0);
+
         }
 
         //Load config
