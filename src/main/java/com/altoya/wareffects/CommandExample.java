@@ -1,4 +1,4 @@
-package com.altoya.pluginname;
+package com.altoya.wareffects;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
