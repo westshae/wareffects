@@ -15,8 +15,6 @@ import org.bukkit.persistence.PersistentDataContainer;
 import com.shaewest.wareffects.Extra.ChunkWeapons;
 
 public class UseBeacon implements Listener{
-
-  
   @EventHandler // Detects player inventory interaction
   public void playerFirstJoinEvent(PlayerInteractEvent event){
     if(!event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) return;

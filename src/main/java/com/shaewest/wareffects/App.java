@@ -8,7 +8,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.shaewest.wareffects.Tasks.GasTasks;
 import com.shaewest.wareffects.Tasks.NukeTasks;
+import com.shaewest.wareffects.Tasks.PtsdTasks;
 import com.shaewest.wareffects.Commands.RegionalWeapons;
+import com.shaewest.wareffects.Events.KillPtsd;
 import com.shaewest.wareffects.Events.UseBeacon;
 
 import net.milkbowl.vault.economy.Economy;
@@ -27,10 +29,13 @@ public class App extends JavaPlugin {
 
         //Events
         this.getServer().getPluginManager().registerEvents(new UseBeacon(), this);
+        this.getServer().getPluginManager().registerEvents(new KillPtsd(), this);
+
 
         //Tasks
         new NukeTasks().runTaskTimer(this, 0, 100);
         new GasTasks().runTaskTimer(this, 0, 100);
+
     }
 
     private boolean setupEconomy()
@@ -54,13 +59,14 @@ public class App extends JavaPlugin {
 
     public void loadConfig() {
         //Get potential config file
-        File configFile = new File(getDataFolder(), "config.yml"); //TODO UPDATE FILENAME
+        File configFile = new File(getDataFolder(), "config.yml"); 
 
         if(!configFile.exists()){
             //Add new defaults, path might be items.0.modelID
             getConfig().addDefault("nuke.price", 1000.0);
-            getConfig().addDefault("gas.price", 1000.0);
             getConfig().addDefault("nuke.seconds", 60);
+
+            getConfig().addDefault("gas.price", 1000.0);
             getConfig().addDefault("gas.seconds", 60);
         }
 
