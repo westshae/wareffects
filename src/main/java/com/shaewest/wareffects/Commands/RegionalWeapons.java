@@ -23,18 +23,35 @@ public class RegionalWeapons implements CommandExecutor {
   @Override
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
     if (!command.getName().equalsIgnoreCase("regionalweapons")) return true;
-    if (!sender.hasPermission("wareffects.regionalweapons.use")) return true;
-
     if(args.length != 1) return true;
 
     String weaponType = args[0].toLowerCase();
     if(weaponType.equals("list")){
+      if (!sender.hasPermission("wareffects.regionalweapons.list")) {
+        Util.sendErrorMessage((Player)sender, "You have no permission to run this command.");
+        return true;
+      }
+
       handleListCommand((Player) sender);
       return true;
     }
 
-    if(weaponType.contains("nuke")) purchaseNuke((Player) sender);
-    if(weaponType.contains("gas")) purchaseGas((Player) sender);
+    if(weaponType.contains("nuke")) {
+      if (!sender.hasPermission("wareffects.regionalweapons.nuke")){
+        Util.sendErrorMessage((Player)sender, "You have no permission to buy nukes.");
+        return true;
+      }
+
+      purchaseNuke((Player) sender);
+    }
+    if(weaponType.contains("gas")) {
+      if (!sender.hasPermission("wareffects.regionalweapons.gas")) {
+        Util.sendErrorMessage((Player)sender, "You have no permission to buy gas.");
+        return true;
+      }
+
+      purchaseGas((Player) sender);
+    }
 
     return true;
   }
