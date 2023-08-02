@@ -2,6 +2,7 @@ package com.shaewest.wareffects.Extra;
 
 import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
@@ -40,7 +41,7 @@ public class CustomEffects {
 
     if(hasLeatherArmour) return;
     player.sendMessage("" + ChatColor.BOLD + ChatColor.GREEN + "RADIATION ATTACK");
-
+    player.playSound(player, Sound.ENTITY_ENDER_DRAGON_GROWL, 1, 0);
 
     switch(Util.randomInt(4)){
       case 0:
@@ -68,6 +69,7 @@ public class CustomEffects {
 
     if(hasLeatherHelmet) return;
     player.sendMessage("" + ChatColor.BOLD + ChatColor.GOLD + "GAS ATTACK");
+    player.playSound(player, Sound.ENTITY_CREEPER_PRIMED, 1, 0);
 
     switch(Util.randomInt(3)){
       case 0:
@@ -97,6 +99,8 @@ public class CustomEffects {
     };
     int randomIndex = Util.randomInt(10);
     player.sendMessage("" + ChatColor.BOLD + ChatColor.GRAY + ptsdMessages[randomIndex]);
+    player.playSound(player, Sound.ENTITY_ENDER_DRAGON_HURT, 1, 0);
+
 
     int level = 1;
     if(kills > 10) level = 2;
