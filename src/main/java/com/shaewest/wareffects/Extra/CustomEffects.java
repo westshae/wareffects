@@ -96,10 +96,10 @@ public class CustomEffects {
     if(kills > 50) level = 4;
     if(kills > 100) level = 5;
 
-    new PotionEffect(PotionEffectType.SLOW, level*60, level).apply(player);
-    new PotionEffect(PotionEffectType.HUNGER, level*60, level).apply(player);
-    new PotionEffect(PotionEffectType.DARKNESS, level*60, level).apply(player);
-    new PotionEffect(PotionEffectType.SLOW_DIGGING, level*60, level).apply(player);
+    new PotionEffect(PotionEffectType.SLOW, level*1200, level).apply(player);
+    new PotionEffect(PotionEffectType.HUNGER, level*1200, level).apply(player);
+    new PotionEffect(PotionEffectType.DARKNESS, level*1200, level).apply(player);
+    new PotionEffect(PotionEffectType.SLOW_DIGGING, level*1200, level).apply(player);
 
   }
 
