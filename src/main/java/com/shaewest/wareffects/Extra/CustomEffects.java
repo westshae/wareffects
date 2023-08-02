@@ -1,8 +1,10 @@
 package com.shaewest.wareffects.Extra;
 
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -23,10 +25,15 @@ public class CustomEffects {
 
 
     if(helmet != null && chestplate != null && leggings != null && boots != null){
-      hasLeatherHelmet = helmet.getType().equals(Material.LEATHER_HELMET);
-      hasLeatherChestplate = chestplate.getType().equals(Material.LEATHER_CHESTPLATE);
-      hasLeatherLeggings = leggings.getType().equals(Material.LEATHER_LEGGINGS);
-      hasLeatherBoots = boots.getType().equals(Material.LEATHER_BOOTS);
+      boolean isLeatherHelmet = helmet.getType().equals(Material.LEATHER_HELMET);
+      boolean isLeatherChestplate = chestplate.getType().equals(Material.LEATHER_CHESTPLATE);
+      boolean isLeatherLeggings = leggings.getType().equals(Material.LEATHER_LEGGINGS);
+      boolean isLeatherBoots = boots.getType().equals(Material.LEATHER_BOOTS);
+      
+      hasLeatherHelmet = isLeatherHelmet && ((LeatherArmorMeta) helmet.getItemMeta()).getColor().equals(Color.fromBGR(4053246));
+      hasLeatherChestplate = isLeatherChestplate && ((LeatherArmorMeta) chestplate.getItemMeta()).getColor().equals(Color.fromBGR(4053246));
+      hasLeatherLeggings = isLeatherLeggings && ((LeatherArmorMeta) leggings.getItemMeta()).getColor().equals(Color.fromBGR(4053246));
+      hasLeatherBoots = isLeatherBoots && ((LeatherArmorMeta) boots.getItemMeta()).getColor().equals(Color.fromBGR(4053246));
     }
     
     boolean hasLeatherArmour = hasLeatherHelmet || hasLeatherChestplate || hasLeatherLeggings || hasLeatherBoots;
@@ -55,7 +62,8 @@ public class CustomEffects {
     ItemStack helmet = player.getInventory().getHelmet();
     boolean hasLeatherHelmet = false;
     if(helmet != null){
-      hasLeatherHelmet = helmet.getType().equals(Material.LEATHER_HELMET);
+      boolean isLeatherHelmet = helmet.getType().equals(Material.LEATHER_HELMET);
+      hasLeatherHelmet = isLeatherHelmet && ((LeatherArmorMeta) helmet.getItemMeta()).getColor().equals(Color.fromBGR(4053246));
     }
 
     if(hasLeatherHelmet) return;

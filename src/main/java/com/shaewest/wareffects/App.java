@@ -6,12 +6,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.shaewest.wareffects.Tasks.GasTasks;
-import com.shaewest.wareffects.Tasks.NukeTasks;
-import com.shaewest.wareffects.Tasks.PtsdTasks;
 import com.shaewest.wareffects.Commands.RegionalWeapons;
+import com.shaewest.wareffects.Events.HazmatGear;
 import com.shaewest.wareffects.Events.KillPtsd;
 import com.shaewest.wareffects.Events.UseBeacon;
+import com.shaewest.wareffects.Tasks.GasTasks;
+import com.shaewest.wareffects.Tasks.NukeTasks;
 
 import net.milkbowl.vault.economy.Economy;
 
@@ -30,6 +30,8 @@ public class App extends JavaPlugin {
         //Events
         this.getServer().getPluginManager().registerEvents(new UseBeacon(), this);
         this.getServer().getPluginManager().registerEvents(new KillPtsd(), this);
+        this.getServer().getPluginManager().registerEvents(new HazmatGear(), this);
+
 
 
         //Tasks
